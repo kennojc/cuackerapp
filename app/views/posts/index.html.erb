@@ -2,6 +2,13 @@
 
 <h1>Posts</h1>
 
+<% if user_signed_in? %>
+   <%= render "form" %>
+   <br>
+<% end %>
+
+<%= render @posts %>
+
 <table>
   <thead>
     <tr>

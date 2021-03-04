@@ -9,6 +9,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :photolink %><br />
+    <%= f.photolink_field :photolink, autocomplete: "photolink" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
