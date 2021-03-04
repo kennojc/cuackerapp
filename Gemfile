@@ -7,6 +7,13 @@ ruby '3.0.0'
 gem 'rails', '~> 6.1.3'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
+
+# Use BetterErrors for debugging
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
 # Use Devise for authentication
 gem 'devise'
 # Use Puma as the app server
