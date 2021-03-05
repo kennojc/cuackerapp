@@ -5,10 +5,14 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav navbar-right">
+      <div class="navbar-nav">
         <% if !user_signed_in? %>
         <ul>
-          <li><%= link_to "Ingresar", new_user_session_path, class: 'nav-link' %></li>
+          <li><%= link_to "Ingresar", new_user_session_path, class: 'nav navbar-nav  navbar-right' %></li>
+        </ul>
+        <ul>  
+          <li><%= link_to "Registrarse", new_user_registration_path, class: 'nav navbar-nav  navbar-right' %></li>
+        </ul> 
          <% else %>
           <li>Bienvenido :<span class="navbar-text"> <%= current_user.email %></span></li>
           <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>

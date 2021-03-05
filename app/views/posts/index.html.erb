@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= render "form" %>
-<br
+<% if user_signed_in? %>
+  <%= render "form" %>
+<% end %>
 <br>
 
 <h1>Quacks</h1> <h6>(como tweets, pero mejores)</h6>
