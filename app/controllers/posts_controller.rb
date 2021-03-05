@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.order( created_at: :desc )
+    @posts = Post.order( created_at: :desc )
     
   end
 
@@ -70,6 +70,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:user_id)
+      params.require(:post).permit(:user_id, :content)
     end
 end

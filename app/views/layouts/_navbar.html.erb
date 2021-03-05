@@ -7,11 +7,13 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav navbar-right">
         <% if !user_signed_in? %>
+        <ul>
           <li><%= link_to "Ingresar", new_user_session_path, class: 'nav-link' %></li>
          <% else %>
-        <li><span class="navbar-text">Bienvenido : <%= current_user.email %></span></li>
+          <li>Bienvenido :<span class="navbar-text"> <%= current_user.email %></span></li>
           <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
         <% end %>
+        </ul>
       </div>
     </div>
   </div>
