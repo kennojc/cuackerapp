@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :likes
   end
-  devise_for :users
+
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  
   root 'posts#index'
 
   get 'user_posts/:user_id' => 'posts#user', as: :user_posts

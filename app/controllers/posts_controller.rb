@@ -29,7 +29,7 @@ class PostsController < ApplicationController
         format.html { redirect_to root_path, notice: "Quack posteado" }
         format.json { render :show, status: :created, location: @post }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: "Debe ingresar primero.", status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
