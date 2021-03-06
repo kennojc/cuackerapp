@@ -16,6 +16,8 @@ end
 
 # Use Devise for authentication
 gem 'devise'
+# Pagination with Kaminari
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets

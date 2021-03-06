@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<%
+=begin%>
+ <p id="notice"><%= notice %></p> 
+<%
+=end%>
 <% if user_signed_in? %>
   <%= render "form" %>
 <% end %>
@@ -7,9 +11,9 @@
 <h1>Quacks</h1> <h6>(como tweets, pero mejores)</h6>
 
 <br>
-
-
 <%= render @posts %>
+<%= paginate @posts %>
+
 <br>
 <br>
 <table>
