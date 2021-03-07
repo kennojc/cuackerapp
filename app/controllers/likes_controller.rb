@@ -1,24 +1,16 @@
 class LikesController < ApplicationController
-    before_action :find_post
+  
+  def create
+    post = Post.find( params[:post_id] )
 
-    def create
-        if already_liked?
-            flash[:notice] = "Ya hizo Like!"
-        else
-            @post.likes.create(user_id: current_user.id)
-        end
-            redirect_to posts_path
-    end
-    
-
-    private
-
-    def find_post
-        @post = Post.find(params[:post_id])
+    if like = Like.find_by( post: post, user: current_user )
+       like.destroy
+    else
+       like = Like.new( post: post, user: current_user )
+       like.save
     end
 
-    def already_liked?
-        Like.where(user_id: current_user.id, post_id: params[:post_id]).exists?
-    end
+    redirect_to root_path
+ end
 
 end
