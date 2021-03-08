@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy retweet]
 
   # GET /posts or /posts.json
   def index
@@ -22,7 +22,8 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new( content: post_params[:content], user: current_user )
+      @post = current_user.posts.new(post_params)
+    # @post = Post.new( content: post_params[:content], user: current_user )
 
     respond_to do |format|
       if @post.save
@@ -63,6 +64,15 @@ class PostsController < ApplicationController
     @likes = @user.likes.joins( :post ).order( "posts.created_at DESC" )
   end
 
+  def retweet
+    recuac = current_user.posts.new(post_id: @post.id)
+    if recuac.save
+      redirect_to root_path, notice: "Recuack Exitoso"
+    else
+      redirect_to root_path, notice: "No se pudo realizar Recuack"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -71,6 +81,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:user_id, :content)
+      params.require(:post).permit(:user_id, :content, :post_id)
     end
 end

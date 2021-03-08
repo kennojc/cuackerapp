@@ -11,10 +11,11 @@
         <p><%= link_to "Posteado #{time_ago_in_words(post.created_at)} atrás", post %> <br>
         
         <% liked = Like.find_by( post: post, user: current_user ) != nil %>
-      <% btn_color = liked ? "warning" : "default" %>
+      <% btn_color = liked ? "danger" : "warning" %>
 
-      <%= link_to "cuaclike", post_likes_path( post ), method: :post, class: "btn btn-#{btn_color} btn-xs", disabled: !user_signed_in? %>
-      <%= post.likes.count %><%= (post.likes.count) == 1 ? 'Like' : 'Likes'%>
+      <%= link_to 'cuacklike', post_likes_path( post ), method: :post, class: "btn btn-#{btn_color} btn-xs", disabled: !user_signed_in? %>
+      <%= post.likes.count %><%= (post.likes.count) == 1 ? 'Like' : 'Likes'%><br>
+      <%= link_to 'ReCuack', retweet_post_path(post), method: :post if user_signed_in? %>
         
       </div>
     </div>

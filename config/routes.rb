@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => {:registrations => "registrations"}
   resources :posts do
+    member do
+      post :retweet
+    end
     resources :likes
   end
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
-  
   root 'posts#index'
 
   get 'user_posts/:user_id' => 'posts#user', as: :user_posts
