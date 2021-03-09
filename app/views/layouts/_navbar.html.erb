@@ -1,25 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-warning">
   <div class="container-fluid">
-    <%= link_to 'CuackerApp', root_path, class: 'navbar-brand text-white text-bold' %>
+    <%= link_to 'CuackerApp', root_path, class: 'navbar-brand text-white text-bold h1' %><i class="fas fa-feather-alt fa-2x text-white m-2"></i>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <% if !user_signed_in? %>
-        <ul>
-          <li><%= link_to "Ingresar", new_user_session_path, class: 'nav navbar-nav  navbar-right' %></li>
-        </ul>
-        <ul>  
-          <li><%= link_to "Registrarse", new_user_registration_path, class: 'nav navbar-nav  navbar-right' %></li>
-        </ul> 
-         <% else %>
-          <li>Bienvenido :<span class="navbar-text"> <%= current_user.email %></span></li>
-          <li><%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
-        <% end %>
-        </ul>
+      <div class="navbar-nav nav-pills justify-content-end">
+      <% if !user_signed_in? %>
+        <%= link_to "Ingresar", new_user_session_path, class: 'nav-link active m-2 bg-success text-white' %>
+        <%= link_to "Registrarse", new_user_registration_path, class: 'nav-link active m-2 bg-success text-white' %>
+      <% else %>
+        <div class="navbar-text m-1">Bienvenido : </div><span class="navbar-text m-1"> <%= current_user.email %></span>
+        <%= link_to "Salir", destroy_user_session_path, :method => :delete, class: 'nav-link active m-2 bg-success text-white' %>
+      <% end %>
       </div>
     </div>
   </div>
 </nav>
-

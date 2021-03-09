@@ -1,39 +1,15 @@
-<%
-=begin%>
- <p id="notice"><%= notice %></p> 
-<%
-=end%>
+
 <% if user_signed_in? %>
   <%= render "form" %>
 <% end %>
 <br>
 
 <h1>Quacks</h1> <h6>(como tweets, pero mejores)</h6>
-<br>
-<%
-=begin%>
- <br>
-<%= render @posts %>
-<%= paginate @posts %>
-
-<br>
-<br>
-<hr>
-<hr> 
-<%
-=end%>
 
 <% @posts.each do |post| %>
   <%= render partial: "posts/#{post.post_class}", locals: {post: post} %>
-
   <% end %>
 
   <%= paginate @posts %>
   
-<br>
-<%
-=begin%>
- 
-<%= link_to 'New Post', new_post_path %> 
-<%
-=end%>
+

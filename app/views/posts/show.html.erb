@@ -1,13 +1,11 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
-</p>
-
-<div class="container">
-    <!-- iteramos los likes para traer los id de usuario y luego sus fotos -->
-    
+<div class="card">
+  <h5 class="card-header">¡ Nos Gusta !</h5>
+  <div class="card-body">
+    <h5 class="card-title">Cuack De: <%= @post.username %> </h5>
+    <p class="card-text"><%= @post.content %></p>
+    <p>En total somos <%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
+    <div class="container">
     <div>
       <% Like.where(post_id: @post.id).each do |photo| %>
         <% photolink =  photo.user_id %>
@@ -17,10 +15,9 @@
           </div>
       <% end %>
     </div>
+    
+    <%= link_to 'Regresar', root_path , class:'btn btn-warning'%>
 
-<%= button_to 'Like', post_likes_path(@post), method: :post %>
+  </div>
+</div>
 
-<p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>

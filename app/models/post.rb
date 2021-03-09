@@ -2,7 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :post, optional: true
   has_many :likes, dependent: :destroy
-  # validates :content, presence: { notice: '¡ Debe incluir un Cuac !' }
+  # validates :content, presence: { notice: '¡ Debe incluir un Cuack !' }
 
   def post_class
     if post_id?
@@ -11,5 +11,10 @@ class Post < ApplicationRecord
       "simple"
     end
   end
+
+  def username
+    user.username
+  end
+
 
 end
