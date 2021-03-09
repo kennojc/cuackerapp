@@ -5,6 +5,19 @@
   <%= @post.user_id %>
 </p>
 
+<div class="container">
+    <!-- iteramos los likes para traer los id de usuario y luego sus fotos -->
+    
+    <div>
+      <% Like.where(post_id: @post.id).each do |photo| %>
+        <% photolink =  photo.user_id %>
+          <div class="d-inline-block p-2">
+            <img src="<%= User.find(photolink).photolink%>">
+            <p><%= User.find(photolink).username %></p>
+          </div>
+      <% end %>
+    </div>
+
 <%= button_to 'Like', post_likes_path(@post), method: :post %>
 
 <p><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></p>
