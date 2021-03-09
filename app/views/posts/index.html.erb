@@ -9,43 +9,31 @@
 <br>
 
 <h1>Quacks</h1> <h6>(como tweets, pero mejores)</h6>
-
 <br>
+<%
+=begin%>
+ <br>
 <%= render @posts %>
 <%= paginate @posts %>
 
 <br>
 <br>
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <%
-=begin%>
- <th>Likes</th> 
+<hr>
+<hr> 
 <%
 =end%>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.user_id %></td>
-        <%
-=begin%>
- <td><%= @post.likes.count %> <%= (@post.likes.count) == 1 ? 'Like' : 'Likes'%></td> 
-<%
-=end%>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'ReCuack', retweet_post_path(post), method: :post if user_signed_in? %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @posts.each do |post| %>
+  <%= render partial: "posts/#{post.post_class}", locals: {post: post} %>
 
+  <% end %>
+
+  <%= paginate @posts %>
+  
 <br>
-
-<%= link_to 'New Post', new_post_path %>
+<%
+=begin%>
+ 
+<%= link_to 'New Post', new_post_path %> 
+<%
+=end%>
