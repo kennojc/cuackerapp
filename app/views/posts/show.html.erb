@@ -10,7 +10,7 @@
       <% Like.where(post_id: @post.id).each do |photo| %>
         <% photolink =  photo.user_id %>
           <div class="d-inline-block p-2">
-            <img src="<%= User.find(photolink).photolink%>" style="width:80px;height:80px;>
+            <img src="<%= User.find(photolink).photolink%>" style="width:80px;height:80px;">
             <p><%= User.find(photolink).username %></p>
           </div>
       <% end %>
