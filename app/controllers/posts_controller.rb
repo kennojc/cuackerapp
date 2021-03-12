@@ -9,7 +9,6 @@ class PostsController < ApplicationController
       @posts = Post.tweets_for_me(followed, current_user.id).order( created_at: :desc ).page params[:page]
     else
       @posts = Post.order( created_at: :desc ).page params[:page]
-  
     end
     
   end
