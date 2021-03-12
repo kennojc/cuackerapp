@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
+  get 'users/index'
   devise_for :users, :controllers => {:registrations => "registrations"}
+  
+  resources :users, :only =>[:show]
   resources :posts do
     member do
       post :retweet
@@ -7,8 +10,16 @@ Rails.application.routes.draw do
     resources :likes
   end
 
-  root 'posts#index'
+  resources :users do
+    resources :friends
+    post 'friend/:user_id', to: 'friends#create', as: 'create_friend'
+  end
 
-  get 'user_posts/:user_id' => 'posts#user', as: :user_posts
+  root 'posts#index'
+  
+  get 'user_posts/:user_id', to: 'posts#user', as: :user_posts
+  
+  match '/users',   to: 'users#index',   via: 'get'
+  match '/users/:id',     to: 'users#show',       via: 'get'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

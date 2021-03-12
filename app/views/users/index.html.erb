@@ -1,0 +1,19 @@
+<% @users.each do |user| %>
+
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="<%= user.photolink%>" alt="User Profile Pic" style="width:65px;height:65px;">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><%= user.username %></h5>
+        <p class="card-text"><%= link_to 'Follow', user_friends_path(user.posts.last.user_id), class: 'btn btn-warning btn-sm', method: :post if user_signed_in?  %>
+</p>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<%end%>

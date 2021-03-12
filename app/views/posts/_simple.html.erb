@@ -18,6 +18,10 @@
       <%end%>
       <%= post.likes.count %><%= (post.likes.count) == 1 ? 'Like' : 'Likes'%><br>
       <%= link_to 'ReCuack', retweet_post_path(post), class:'btn btn-outline-warning btn-sm', method: :post if user_signed_in?%>
+      <br>
+      <%= link_to 'Follow', user_friends_path(post.user_id), class: 'btn btn-warning btn-sm', method: :post if user_signed_in?  %>
+      
+      
         
       </div>
     </div>

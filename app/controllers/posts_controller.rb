@@ -3,7 +3,14 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.order( created_at: :desc ).page params[:page]
+
+    if user_signed_in?
+      followed = current_user.friends.pluck(:friend_id)
+      @posts = Post.tweets_for_me(followed, current_user.id).order( created_at: :desc ).page params[:page]
+    else
+      @posts = Post.order( created_at: :desc ).page params[:page]
+  
+    end
     
   end
 
@@ -23,7 +30,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
       @post = current_user.posts.new(post_params)
-    # @post = Post.new( content: post_params[:content], user: current_user )
+    
 
     respond_to do |format|
       if @post.save
@@ -59,10 +66,13 @@ class PostsController < ApplicationController
   end
 
   def user
+    
     @user = User.find(params[:user_id])
     @posts = Post.where( user: @user ).order( created_at: :desc )
     @likes = @user.likes.joins( :post ).order( "posts.created_at DESC" )
   end
+
+  
 
   def retweet
     recuac = current_user.posts.new(post_id: @post.id)
