@@ -15,6 +15,10 @@ group :development do
   gem "binding_of_caller"
 end
 
+#Ransack for searches
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
+
 # Use Devise for authentication
 gem 'devise'
 # Pagination with Kaminari

@@ -3,12 +3,13 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-
+    @q = Post.ransack(params[:q])
     if user_signed_in?
       followed = current_user.friends.pluck(:friend_id)
-      @posts = Post.tweets_for_me(followed, current_user.id).order( created_at: :desc ).page params[:page]
+      @posts = @q.result(distinct: true).tweets_for_me(followed, current_user.id).order( created_at: :desc ).page params[:page]  
+
     else
-      @posts = Post.order( created_at: :desc ).page params[:page]
+      @posts = @q.result(distinct: true).order( created_at: :desc ).page params[:page]
     end
     
   end
