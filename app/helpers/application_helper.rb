@@ -4,7 +4,7 @@ module ApplicationHelper
         content_words = content.split(" ")
         content_with_links = content_words.map do |word| 
           if word.include?("#")
-             link_to(word,root_path(q:{content_eq: word})) 
+             link_to(word,root_path(q:{content_cont: word})) 
           else
             word
           end
