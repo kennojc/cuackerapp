@@ -15,14 +15,18 @@ group :development do
   gem "binding_of_caller"
 end
 
+# ActiveAdmin interface
+gem 'activeadmin'
+
 #Ransack for searches
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
+# Pagination with Kaminari
+gem 'kaminari'
 
 # Use Devise for authentication
 gem 'devise'
-# Pagination with Kaminari
-gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
+
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
