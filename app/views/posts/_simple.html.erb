@@ -7,7 +7,7 @@
     <div class="col-md-8">
       <div class="card-body">
         <h6 class="card-title"><%= link_to post.user.username, user_posts_path( post.user ) %> </h6>
-        <p class="card-text"><%= post.content %></p><br>
+        <p class="card-text"><%= sanitize hashtags(post.content) %></p><br>
         <p><%= link_to "Posteado #{time_ago_in_words(post.created_at)} atrás", post %> <br>
         
         <% liked = Like.find_by( post: post, user: current_user ) != nil %>
