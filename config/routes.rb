@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   match '/users/:id',     to: 'users#show',       via: 'get'
 
   get 'api/news', to:"api#api"
+  get 'api/:date1/:date2', to: "api#interval"
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
