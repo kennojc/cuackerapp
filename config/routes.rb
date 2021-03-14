@@ -23,5 +23,9 @@ Rails.application.routes.draw do
   
   match '/users',   to: 'users#index',   via: 'get'
   match '/users/:id',     to: 'users#show',       via: 'get'
+
+  get 'api/news', to:"api#api"
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
