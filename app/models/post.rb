@@ -18,5 +18,8 @@ class Post < ApplicationRecord
     user.username
   end
 
+  def retweeter
+    self.user_id
+  end
 
 end

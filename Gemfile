@@ -22,7 +22,7 @@ gem 'activeadmin'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 # Pagination with Kaminari
-gem 'kaminari'
+gem 'kaminari' 
 
 # Use Devise for authentication
 gem 'devise'

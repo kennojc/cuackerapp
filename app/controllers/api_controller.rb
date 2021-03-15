@@ -12,7 +12,7 @@ class ApiController < ActionController::Base
           :user_id => t.user_id,
           :likes_count => t.likes.count,
           :retweets_count => t.id,
-          :retweeted_from => t.post_id
+          :retweeted_from => t.post_id.nil? ? 'No hay retweet' : t.retweeter
         }
         api_array << apihash
       end
@@ -20,11 +20,38 @@ class ApiController < ActionController::Base
     end
 
     def interval
-      start = params[:date1]
-      finish = params[:date2]
+      start = params[:date1].to_date
+      finish = params[:date2].to_date.end_of_day
       @tweets = Post.where(:created_at => start..finish).order(:desc)
       render json: @tweets
     end
-end
+
+    def api_post
+      
+      @user = User.find_by(email:request.headers["X-EMAIL"]) 
+
+      if @user.present?
+        @post = Post.new(user: @user, content:request.headers["X-CUAC"])
+          if request.headers["X-API-KEY"] == @user.api_key
+            
+            if @post.save
+              render json: @post
+            else
+              render json: "Cuack no salvado."
+            end
+            
+          else
+            render json: "API KEY no es válida."
+          end
+      else
+        render json: "Usuario no encontrado."
+      end
+
+
+    end
+  
+  
+  
+  end
 
 
