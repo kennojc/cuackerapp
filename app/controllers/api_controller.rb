@@ -11,7 +11,6 @@ class ApiController < ActionController::Base
           :content => t.content,
           :user_id => t.user_id,
           :likes_count => t.likes.count,
-          :retweets_count => t.id,
           :retweeted_from => t.post_id.nil? ? 'No hay retweet' : t.retweeter
         }
         api_array << apihash

@@ -22,4 +22,5 @@ class Post < ApplicationRecord
     self.user_id
   end
 
+
 end
